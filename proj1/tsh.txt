@@ -1,0 +1,80 @@
+os@os-VirtualBox:~/Documents/theory_assignment/proj1-1$ make
+gcc -o tsh tsh.o 
+os@os-VirtualBox:~/Documents/theory_assignment/proj1-1$ ./tsh
+tsh> grep "int " < tsh.c
+    int argc = 0;               /* 인자의 개수 */
+    int l = 0;		/* '<' 체크용 위치 저장 변수 */
+    int r = 0;		/* '>' 체크용 위치 저장 변수 */
+    int pp = 0;		/* '|' 체크용 위치 저장 변수 */
+		int fd[2];
+		 * 자식 프로세스. int main까지 합하면 손자. 
+		  	int leng = 0;
+		  	for (int i = 0; i < argc; i++) {	
+		 * 부모 프로세스. int main까지 합하면 자식.
+		int fd_l = open(argv[l+1], O_RDWR | O_CREAT, 0644);	/* 읽어 올 파일 열기 */
+		int fd_r = open(argv[r+1], O_RDWR | O_CREAT, 0644);	/* 저장할 파일 생성 */
+int main(void)
+    int len;                    /* 입력된 명령어의 길이 */
+    int background;             /* 백그라운드 실행 유무 */
+tsh> ls -l
+total 2720
+drwx------ 2 os os    4096  3월 16 15:31 __MACOSX
+-rw-rw-rw- 1 os os     557  3월 16 15:39 Makefile
+-rw-rw-rw- 1 os os 2739828  3월 16 15:31 proj1.pdf
+-rwxrwxr-x 1 os os   13448  3월 30 15:46 tsh
+-rw-rw-rw- 1 os os    9371  3월 29 20:56 tsh.c
+-rw-rw-r-- 1 os os    5648  3월 30 15:43 tsh.o
+tsh> ls -l > delme
+tsh> cat delme
+total 2720
+-rw-r--r-- 1 os os       0  3월 30 15:46 delme
+drwx------ 2 os os    4096  3월 16 15:31 __MACOSX
+-rw-rw-rw- 1 os os     557  3월 16 15:39 Makefile
+-rw-rw-rw- 1 os os 2739828  3월 16 15:31 proj1.pdf
+-rwxrwxr-x 1 os os   13448  3월 30 15:46 tsh
+-rw-rw-rw- 1 os os    9371  3월 29 20:56 tsh.c
+-rw-rw-r-- 1 os os    5648  3월 30 15:43 tsh.o
+tsh> sort < delme > delme2
+tsh> cat delme2
+drwx------ 2 os os    4096  3월 16 15:31 __MACOSX
+-rw-r--r-- 1 os os       0  3월 30 15:46 delme
+-rw-rw-r-- 1 os os    5648  3월 30 15:43 tsh.o
+-rw-rw-rw- 1 os os 2739828  3월 16 15:31 proj1.pdf
+-rw-rw-rw- 1 os os     557  3월 16 15:39 Makefile
+-rw-rw-rw- 1 os os    9371  3월 29 20:56 tsh.c
+-rwxrwxr-x 1 os os   13448  3월 30 15:46 tsh
+total 2720
+tsh> ps -A | grep -i system
+    1 ?        00:02:56 systemd
+  279 ?        00:00:11 systemd-journal
+  304 ?        00:00:01 systemd-udevd
+  383 ?        00:00:04 systemd-resolve
+  622 ?        00:00:02 systemd-logind
+ 1148 ?        00:00:00 systemd
+ 1374 ?        00:00:06 systemd
+tsh> ps -A | grep -i system | awk '{print $1,$4}'
+1 systemd
+279 systemd-journal
+304 systemd-udevd
+383 systemd-resolve
+622 systemd-logind
+1148 systemd
+1374 systemd
+tsh> cat tsh.c | head -6 | tail -5 | head -1
+ * Copyright(c) 2023 All rights reserved by Jihyeon Lee.
+tsh> sort < tsh.c | grep "int " | awk '{print $1,$2}' > delme3
+tsh> cat delme3
+for (int
+int argc
+int background;
+int fd[2];
+int fd_l
+int fd_r
+int l
+int len;
+int leng
+* 자식
+* 부모
+int main(void)
+int pp
+int r
